@@ -10,7 +10,7 @@ NETWORK = \
         create-network $(PACKAGE_STORE)/cisco-ios-cli-3.8	 2 ios \
         create-network $(PACKAGE_STORE)/cisco-iosxr-cli-3.5	 2 xr \
         create-network $(PACKAGE_STORE)/juniper-junos-nc-3.0	 2 j \
-        create-network $(PACKAGE_STORE)/alu-sr-cli-3.4	 1
+        create-network $(PACKAGE_STORE)/alu-sr-cli-3.4	 1 a
 
 #all: netsim ncs
 all: netsim ncs
@@ -26,6 +26,10 @@ ncs:
 start:
 	ncs-netsim start
 	ncs
+
+stop:
+	-ncs-netsim stop
+	-ncs --stop
 
 clean:
 	rm -rf netsim running.DB logs state ncs-cdb *.trace
