@@ -1,0 +1,58 @@
+module ntp-config {
+
+  namespace "http://example.com/ntp-config";
+  prefix ntp-config;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import tailf-common {
+    prefix tailf;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  description
+    "Demo service to configure NTP servers";
+
+  revision 2016-01-01 {
+    description
+      "Initial revision.";
+  }
+
+  list ntp-config {
+    description "This is an RFS skeleton service";
+
+    key name;
+    leaf name {
+      tailf:info "Unique service instance id";
+      tailf:cli-allow-range;
+      type string;
+    }
+
+    uses ncs:service-data;
+    ncs:servicepoint ntp-config-servicepoint;
+
+    // may replace this with other ways of refering to the devices.
+    leaf-list device {
+      type leafref {
+        path "/ncs:devices/ncs:device/ncs:name";
+      }
+    }
+
+    // the continent the device resides on - NTP servers are derived from this
+    leaf continent {
+      tailf:info "Continent where the device resides";
+      type string; // this should really be an identity or enum or whatever it is in yang
+    }
+
+    // leaf primary-ntp-server-ip {
+    //   type inet:ipv4-address;
+    // }
+
+    // leaf secondary-ntp-server-ip {
+    //   type inet:ipv4-address;
+    // }
+  }
+}
