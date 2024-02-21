@@ -1,0 +1,62 @@
+<config>
+  <ip xmlns="urn:ios">
+    <access-list>
+      <extended>
+        <ext-named-acl>
+          <name>ISP-IN</name>
+          <ext-access-list-rule>
+            <rule>remark This ACL restricts traffic inbound from ISP.</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>remark Block bogus source IP addresses.</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>deny ip 0.0.0.0 0.255.255.255 any</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>deny ip 10.0.0.0 0.255.255.255 any</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>deny ip 127.0.0.0 0.255.255.255 any</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>deny ip 169.254.0.0 0.0.255.255 any</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>deny ip 172.16.0.0 0.15.255.255 any</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>deny ip 192.0.2.0 0.0.0.255 any</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>deny ip 192.168.0.0 0.0.255.255 any</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>deny ip 224.0.0.0 31.255.255.255 any</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>permit ip any any</rule>
+          </ext-access-list-rule>
+        </ext-named-acl>
+        <ext-named-acl>
+          <name>MGMT-IN</name>
+          <ext-access-list-rule>
+            <rule>remark This ACL restricts access to management subnets</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>permit ip 192.168.0.0 0.255.255.255</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>permit ip 10.12.34.56 0.0.0.0</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>permit ip 172.16.0.0 0.255.255.255</rule>
+          </ext-access-list-rule>
+          <ext-access-list-rule>
+            <rule>deny ip any any</rule>
+          </ext-access-list-rule>
+        </ext-named-acl>
+      </extended>
+    </access-list>
+  </ip>
+</config>

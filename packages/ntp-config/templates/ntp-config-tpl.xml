@@ -14,6 +14,17 @@
             </peer-list>
           </server>
         </ntp>
+	<ntp xmlns="http://tail-f.com/ned/cisco-ios-xr">
+          <server>
+            <server-list>
+              <name>{$PRIMARY_NTP_SERVER_IP}</name>
+              <prefer/>
+            </server-list>
+            <server-list>
+              <name>{$SECONDARY_NTP_SERVER_IP}</name>
+            </server-list>
+          </server>
+        </ntp>
 	<configuration xmlns="http://xml.juniper.net/xnm/1.1/xnm">
           <system>
             <ntp>
@@ -27,6 +38,19 @@
             </ntp>
           </system>
         </configuration>
+	<system xmlns="http://tail-f.com/ned/alu-sr">
+          <time>
+            <ntp>
+              <server>
+                <address>{$PRIMARY_NTP_SERVER_IP}</address>
+                <prefer/>
+              </server>
+              <server>
+                <address>{$SECONDARY_NTP_SERVER_IP}</address>
+              </server>
+            </ntp>
+          </time>
+        </system>
       </config>
     </device>
   </devices>

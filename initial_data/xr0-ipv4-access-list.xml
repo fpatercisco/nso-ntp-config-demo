@@ -1,0 +1,29 @@
+<config>
+  <ipv4 xmlns="http://tail-f.com/ned/cisco-ios-xr">
+    <access-list>
+      <named-acl>
+        <name>ISP-IN</name>
+        <rule>
+          <id>10</id>
+          <line>remark This ACL restricts access to management subnets</line>
+        </rule>
+        <rule>
+          <id>20</id>
+          <line>permit ip 192.168.0.0 0.255.255.255</line>
+        </rule>
+        <rule>
+          <id>30</id>
+          <line>permit ip 10.12.34.56 0.0.0.0</line>
+        </rule>
+        <rule>
+          <id>40</id>
+          <line>permit ip 172.16.0.0 0.255.255.255</line>
+        </rule>
+        <rule>
+          <id>100</id>
+          <line>deny ip any any</line>
+        </rule>
+      </named-acl>
+    </access-list>
+  </ipv4>
+</config>

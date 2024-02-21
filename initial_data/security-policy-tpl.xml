@@ -1,0 +1,226 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+    <template>
+      <name>security-policy</name>
+      <ned-id>
+        <id xmlns:cisco-ios-cli-3.8="http://tail-f.com/ns/ned-id/cisco-ios-cli-3.8">cisco-ios-cli-3.8:cisco-ios-cli-3.8</id>
+        <config>
+          <ip xmlns="urn:ios">
+            <access-list>
+              <extended>
+                <ext-named-acl>
+                  <name>ISP-IN</name>
+                  <ext-access-list-rule>
+                    <rule>remark This ACL restricts traffic inbound from ISP.</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>remark Block bogus source IP addresses.</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>deny ip 0.0.0.0 0.255.255.255 any</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>deny ip 10.0.0.0 0.255.255.255 any</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>deny ip 127.0.0.0 0.255.255.255 any</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>deny ip 169.254.0.0 0.0.255.255 any</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>deny ip 172.16.0.0 0.15.255.255 any</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>deny ip 192.0.2.0 0.0.0.255 any</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>deny ip 192.168.0.0 0.0.255.255 any</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>deny ip 224.0.0.0 31.255.255.255 any</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>permit ip any any</rule>
+                  </ext-access-list-rule>
+                </ext-named-acl>
+                <ext-named-acl>
+                  <name>MGMT-IN</name>
+                  <ext-access-list-rule>
+                    <rule>remark This ACL restricts access to management subnets</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>permit ip 192.168.0.0 0.255.255.255</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>permit ip 10.12.34.56 0.0.0.0</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>permit ip 172.16.0.0 0.255.255.255</rule>
+                  </ext-access-list-rule>
+                  <ext-access-list-rule>
+                    <rule>deny ip any any</rule>
+                  </ext-access-list-rule>
+                </ext-named-acl>
+              </extended>
+            </access-list>
+          </ip>
+        </config>
+      </ned-id>
+      <ned-id>
+        <id xmlns:cisco-iosxr-cli-3.5="http://tail-f.com/ns/ned-id/cisco-iosxr-cli-3.5">cisco-iosxr-cli-3.5:cisco-iosxr-cli-3.5</id>
+        <config>
+          <ipv4 xmlns="http://tail-f.com/ned/cisco-ios-xr">
+            <access-list>
+              <named-acl>
+                <name>ISP-IN</name>
+                <rule>
+                  <id>10</id>
+                  <line>remark This ACL restricts traffic inbound from ISP.</line>
+                </rule>
+                <rule>
+                  <id>20</id>
+                  <line>remark Block bogus source IP addresses.</line>
+                </rule>
+                <rule>
+                  <id>30</id>
+                  <line>deny ip 0.0.0.0 0.255.255.255 any</line>
+                </rule>
+                <rule>
+                  <id>40</id>
+                  <line>deny ip 10.0.0.0 0.255.255.255 any</line>
+                </rule>
+                <rule>
+                  <id>50</id>
+                  <line>deny ip 127.0.0.0 0.255.255.255 any</line>
+                </rule>
+                <rule>
+                  <id>60</id>
+                  <line>deny ip 169.254.0.0 0.0.255.255 any</line>
+                </rule>
+                <rule>
+                  <id>70</id>
+                  <line>deny ip 172.16.0.0 0.15.255.255 any</line>
+                </rule>
+                <rule>
+                  <id>80</id>
+                  <line>deny ip 192.0.2.0 0.0.0.255 any</line>
+                </rule>
+                <rule>
+                  <id>90</id>
+                  <line>deny ip 192.168.0.0 0.0.255.255 any</line>
+                </rule>
+                <rule>
+                  <id>100</id>
+                  <line>deny ip 224.0.0.0 31.255.255.255 any</line>
+                </rule>
+                <rule>
+                  <id>110</id>
+                  <line>permit ip any any</line>
+                </rule>
+              </named-acl>
+              <named-acl>
+                <name>MGMT-IN</name>
+                <rule>
+                  <id>10</id>
+                  <line>remark This ACL restricts access to management subnets</line>
+                </rule>
+                <rule>
+                  <id>20</id>
+                  <line>permit ip 192.168.0.0 0.255.255.255</line>
+                </rule>
+                <rule>
+                  <id>30</id>
+                  <line>permit ip 10.12.34.56 0.0.0.0</line>
+                </rule>
+                <rule>
+                  <id>40</id>
+                  <line>permit ip 172.16.0.0 0.255.255.255</line>
+                </rule>
+                <rule>
+                  <id>100</id>
+                  <line>deny ip any any</line>
+                </rule>
+              </named-acl>
+            </access-list>
+          </ipv4>
+        </config>
+      </ned-id>
+      <ned-id>
+        <id xmlns:juniper-junos-nc-3.0="http://tail-f.com/ns/ned-id/juniper-junos-nc-3.0">juniper-junos-nc-3.0:juniper-junos-nc-3.0</id>
+        <config>
+          <configuration xmlns="http://xml.juniper.net/xnm/1.1/xnm">
+            <firewall>
+              <filter>
+		<name>MGMT-IN</name>
+		<term>
+                  <name>MGMT-IN</name>
+                  <from>
+                    <source-address>
+                      <name>192.168.0.0/24</name>
+                    </source-address>
+                    <source-address>
+                      <name>10.12.34.56/32</name>
+                    </source-address>
+                    <source-address>
+                      <name>172.16.0.0/24</name>
+                    </source-address>
+                    <address>
+                      <name>0.0.0.0/0</name>
+                    </address>
+                  </from>
+                  <then>
+                    <accept/>
+                  </then>
+		</term>
+		<term>
+		  <name>default deny</name>
+		  <from>
+		    <source-address>
+		      <name>0.0.0.0/0</name>
+		    </source-address>
+		  </from>
+		  <then>
+		    <discard/>
+		  </then>
+		</term>
+              </filter>
+              <filter>
+		<name>ISP-IN</name>
+		<term>
+                  <name>ISP-IN</name>
+                  <from>
+                    <source-address>
+                      <name>10.0.0.0/24</name>
+                    </source-address>
+                    <source-address>
+                      <name>127.0.0.0/24</name>
+                    </source-address>
+                    <source-address>
+                      <name>169.254.0.0/16</name>
+                    </source-address>
+                    <source-address>
+                      <name>172.16.0.0/20</name>
+                    </source-address>
+                    <source-address>
+                      <name>192.0.2.0/8</name>
+                    </source-address>
+                    <source-address>
+                      <name>192.168.0.0/16</name>
+                    </source-address>
+                    <source-address>
+                      <name>224.0.0.0/3</name>
+                    </source-address>
+                  </from>
+                  <then>
+                    <discard/>
+                  </then>
+		</term>
+              </filter>
+            </firewall>
+          </configuration>
+        </config>
+      </ned-id>
+    </template>
+  </devices>
+</config>

@@ -44,15 +44,13 @@ module ntp-config {
     // the continent the device resides on - NTP servers are derived from this
     leaf continent {
       tailf:info "Continent where the device resides";
-      type string; // this should really be an identity or enum or whatever it is in yang
+      type enumeration {
+	enum "North America";
+	enum "South America";
+	enum Europe;
+        enum Asia;
+	enum Australia;
+      }
     }
-
-    // leaf primary-ntp-server-ip {
-    //   type inet:ipv4-address;
-    // }
-
-    // leaf secondary-ntp-server-ip {
-    //   type inet:ipv4-address;
-    // }
   }
 }

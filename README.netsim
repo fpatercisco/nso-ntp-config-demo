@@ -1,0 +1,56 @@
+
+This is a directory for running NCS. The initialization files have
+been generated from running towards netsim project defined
+in /home/fpater/ncs-run/netsim
+
+The directory content in . has been generated through
+the invocation of
+
+# /home/fpater/./nso-6.2.1/bin/ncs-setup --netsim-dir netsim --dest .
+
+The devices in that netsim directory are
+
+ios0 CLI/10022
+ios1 CLI/10023
+xr0 CLI/10024
+xr1 CLI/10025
+j0 NETCONF/12026
+j1 NETCONF/12027
+a0 CLI/10028
+a1 CLI/10029
+
+
+- To start the emulated network, go there and do ncs-netsim start | help
+  If the netsim directory for the emulated network resides above here
+  the ncs-netsim command will search upwards in the directory
+  hierarchy to search for the netsim directory.
+
+- To start NCS, do
+
+    # ncs  [--verbose --foreground]
+
+- To stop NCS, do
+
+    # ncs --stop
+
+- To get a regular CLI into NCS, do
+
+    # ncs_cli -u admin
+
+- To restart NCS from scratch,
+
+   # ncs-setup --reset
+
+    this will ensure NCS is reinitialized from the ncs-cdb/*.xml files
+    when restarted
+
+- To restart the netsim network from scratch, do
+
+    # ncs-netsim stop
+    # ncs-netsim reset
+    # ncs-netsim start
+
+        or in one swoop
+
+    # ncs-netsim restart
+

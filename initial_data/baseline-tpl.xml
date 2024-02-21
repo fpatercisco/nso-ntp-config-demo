@@ -1,0 +1,81 @@
+<config xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+    <template>
+      <name>baseline-tpl</name>
+      <ned-id>
+        <id xmlns:cisco-ios-cli-3.8="http://tail-f.com/ns/ned-id/cisco-ios-cli-3.8">cisco-ios-cli-3.8:cisco-ios-cli-3.8</id>
+        <config>
+          <hostname xmlns="urn:ios">{$HOSTNAME}</hostname>
+          <interface xmlns="urn:ios">
+            <Loopback>
+              <name>0</name>
+              <description>Management interface for {$HOSTNAME}</description>
+            </Loopback>
+          </interface>
+          <banner xmlns="urn:ios">
+            <motd>Welcome to {$HOSTNAME}. Legal disclaimers go here.</motd>
+          </banner>
+          <tacacs-server xmlns="urn:ios">
+            <host>
+              <name>1.2.3.4</name>
+              <port>5678</port>
+              <key>
+                <key>foobarbaz</key>
+              </key>
+            </host>
+          </tacacs-server>
+        </config>
+      </ned-id>
+      <ned-id>
+        <id xmlns:cisco-iosxr-cli-3.5="http://tail-f.com/ns/ned-id/cisco-iosxr-cli-3.5">cisco-iosxr-cli-3.5:cisco-iosxr-cli-3.5</id>
+        <config>
+          <hostname xmlns="http://tail-f.com/ned/cisco-ios-xr">{$HOSTNAME}</hostname>
+          <banner xmlns="http://tail-f.com/ned/cisco-ios-xr">
+            <motd>
+              <message>Welcome to {$HOSTNAME}. Legal disclaimers go here.</message>
+            </motd>
+          </banner>
+          <tacacs-server xmlns="http://tail-f.com/ned/cisco-ios-xr">
+            <host>
+              <name>1.2.3.4</name>
+              <port>5678</port>
+              <key>
+                <key>foobarbaz</key>
+              </key>
+            </host>
+          </tacacs-server>
+          <interface xmlns="http://tail-f.com/ned/cisco-ios-xr">
+            <Loopback>
+              <id>0</id>
+              <description>Management interface for {$HOSTNAME}</description>
+            </Loopback>
+          </interface>
+        </config>
+      </ned-id>
+      <ned-id>
+        <id xmlns:juniper-junos-nc-3.0="http://tail-f.com/ns/ned-id/juniper-junos-nc-3.0">juniper-junos-nc-3.0:juniper-junos-nc-3.0</id>
+        <config>
+          <configuration xmlns="http://xml.juniper.net/xnm/1.1/xnm">
+            <system>
+              <host-name>{$HOSTNAME}</host-name>
+              <tacplus-server>
+                <name>1.2.3.4</name>
+                <port>5678</port>
+                <secret>foobarbaz</secret>
+              </tacplus-server>
+              <login>
+                <announcement>Welcome to {$HOSTNAME}. Legal disclaimers go here.</announcement>
+              </login>
+            </system>
+            <interfaces>
+              <interface>
+                <name>lo0</name>
+                <description>Management interface for {$HOSTNAME}</description>
+              </interface>
+            </interfaces>
+          </configuration>
+        </config>
+      </ned-id>
+    </template>
+  </devices>
+</config>

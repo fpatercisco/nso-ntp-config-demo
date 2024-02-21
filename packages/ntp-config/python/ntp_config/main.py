@@ -1,6 +1,7 @@
 # -*- mode: python; python-indent: 4 -*-
 import ncs
 from ncs.application import Service
+import requests
 
 
 # ------------------------
@@ -16,22 +17,11 @@ class ServiceCallbacks(Service):
 
         template_vars = ncs.template.Variables()
 
-        if service.continent == 'North America':
-            template_vars.add('PRIMARY_NTP_SERVER_IP', '1.1.1.1')
-            template_vars.add('SECONDARY_NTP_SERVER_IP', '11.11.11.11')
-        elif service.continent == 'South America':
-            template_vars.add('PRIMARY_NTP_SERVER_IP', '2.2.2.2')
-            template_vars.add('SECONDARY_NTP_SERVER_IP', '22.22.22.22')
-        elif service.continent == 'Europe':
-            template_vars.add('PRIMARY_NTP_SERVER_IP', '3.3.3.3')
-            template_vars.add('SECONDARY_NTP_SERVER_IP', '33.33.33.33')
-        elif service.continent == 'Asia':
-            template_vars.add('PRIMARY_NTP_SERVER_IP', '4.4.4.4')
-            template_vars.add('SECONDARY_NTP_SERVER_IP', '44.44.44.44')
-        elif service.continent == 'Australia':
-            template_vars.add('PRIMARY_NTP_SERVER_IP', '5.5.5.5')
-            template_vars.add('SECONDARY_NTP_SERVER_IP', '55.55.55.55')
-        # need default setting here
+        #### change this to the URL of your server ####
+        ntp_server_response=requests.get('http://10.89.207.239/ntp/' + str(service.continent))
+        ntp_server_json=ntp_server_response.json()
+        template_vars.add('PRIMARY_NTP_SERVER_IP', ntp_server_json['primary'])
+        template_vars.add('SECONDARY_NTP_SERVER_IP', ntp_server_json['secondary'])
 
         template = ncs.template.Template(service)
         template.apply('ntp-config-tpl', template_vars)
